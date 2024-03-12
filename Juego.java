@@ -1,11 +1,51 @@
 import java.util.Scanner;
 
 public class Juego extends Tablero {
+    boolean ganado=false;
+    String letra="";
+    boolean dificil;
 
     Scanner scanner = new Scanner(System.in);
 
     char abecedario[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
             't', 'u', 'v', 'w', 'x', 'y', 'z' };
+
+    String sopaLetrasNormal[]={"HOLA","AZUL","COJO","OLA","SOL","ROSA"};
+    String sopaLetrasDificil[]={"ROJO","POLLO","ROMERO","ALOE","ARMA","CHATEAR","PATRON","SAL","OSO","DADO","COMIDA","MES","CERDO","OJO","AMOR","TACHO","LAS","OTRO"};
+
+    
+    public void pedirLetra(){            
+        
+        System.out.println("Para escoger la palabra que has reconocido elige las posiciones x e y respectivamente de cada letra saldrá la palabra que se va formando segun vas escribiendolo por ejemplo 1,2\nEn el caso de querer borrar la palabra escribe Borrar");
+        String texto=scanner.nextLine();
+        if (texto.equalsIgnoreCase("borrar")||texto.equalsIgnoreCase("borar")||texto.equalsIgnoreCase("borra")||texto.equalsIgnoreCase("vorrar")||texto.equalsIgnoreCase("vora")) {
+            this.letra="";
+            return;
+        }
+        
+       int n1= Character.getNumericValue(texto.charAt(0));
+       int n2=Character.getNumericValue(texto.charAt(2));
+
+        letra+=this.tableroJuego[n1][n2];
+        System.out.println("La palabra que estas formando es:  "+this.letra);
+        
+        if (dificil) {            
+            for (int i = 0; i < sopaLetrasDificil.length; i++) {
+                if (letra==sopaLetrasDificil[i]) {
+                    System.out.println("\n\n\nHas encontrado la letra "+letra+"\n\n\n");
+                }
+            }
+        }else{
+
+            for (int i = 0; i < sopaLetrasNormal.length; i++) {
+                if (letra.equals(sopaLetrasNormal[i])) {
+                    System.out.println("\n \n\nHas encontrado la letra "+letra+"\n\n\n");
+                }
+            }
+        }
+
+    }
+
 
     @Override
     public void asignaValores(int dificultad) {
@@ -137,13 +177,14 @@ public class Juego extends Tablero {
 
         switch (dificultad) {
             case 0:
+            dificil=false;
                 asignaValores(0);
 
                 break;
 
             case 1:
+            dificil=true;
                 asignaValores(1);
-
                 break;
             default:
                 break;
@@ -156,6 +197,7 @@ public class Juego extends Tablero {
         System.out.println("Elija el nivel de dificultad: \n -0=Normal  \n -1=Dificil ");
 
         int dificultad = scanner.nextInt();
+        scanner.nextLine();
 
         estableceDificultad(dificultad);
 
@@ -175,6 +217,9 @@ public class Juego extends Tablero {
             }
         }
 
+        while (!ganado) {
+            pedirLetra();
+        }
     }
 
 }
