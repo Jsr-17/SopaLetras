@@ -4,30 +4,54 @@ public class Juego extends Tablero {
     boolean ganado=false;
     String letra="";
     boolean dificil;
+    int contador=0;
 
     Scanner scanner = new Scanner(System.in);
 
-    char abecedario[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-            't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
+    String PalabrasEncontradas[];
     String sopaLetrasNormal[]={"HOLA","AZUL","COJO","OLA","SOL","ROSA"};
     String sopaLetrasDificil[]={"ROJO","POLLO","ROMERO","ALOE","ARMA","CHATEAR","PATRON","SAL","OSO","DADO","COMIDA","MES","CERDO","OJO","AMOR","TACHO","LAS","OTRO"};
 
     
     public void compruebaLetra(){
-        if (dificil) {            
+        boolean encontrada=false;
+        if (dificil) {
+            PalabrasEncontradas= new String[18];
+
             for (int i = 0; i < sopaLetrasDificil.length; i++) {
                 if (letra.equals(sopaLetrasDificil[i])) {
+                    
+                    for(int j =0;j<PalabrasEncontradas.length;j++){
+                        if (letra.equals(PalabrasEncontradas[i])) {
+                            System.out.println("Has encontrado ya esa palabra");
+                        }
+                    }
+
                     System.out.println("\n\n\nHas encontrado la letra "+letra+"\n\n\n");
                     this.letra="";
+                    PalabrasEncontradas[contador]=letra;
+                    contador++;
                 }
             }
         }else{
-
+            PalabrasEncontradas = new String[6];
             for (int i = 0; i < sopaLetrasNormal.length; i++) {
-                if (letra.equals(sopaLetrasNormal[i])) {
+
+                for(int j =0;j<PalabrasEncontradas.length;j++){
+                    if (letra.equals(PalabrasEncontradas[i])) {
+                        System.out.println("Has encontrado ya esa palabra");
+                        this.letra="";
+                        return;
+
+                    }
+                }
+
+                if (letra.equals(sopaLetrasNormal[i]) ) {
                     System.out.println("\n \n\nHas encontrado la letra "+letra+"\n\n\n");
                     this.letra="";
+                    PalabrasEncontradas[contador]=letra;
+                    contador++;
                 }
             }
         }
