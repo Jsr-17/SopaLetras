@@ -19,6 +19,7 @@ public class Juego extends Tablero {
             for (int i = 0; i < sopaLetrasDificil.length; i++) {
                 if (letra.equals(sopaLetrasDificil[i])) {
                     System.out.println("\n\n\nHas encontrado la letra "+letra+"\n\n\n");
+                    this.letra="";
                 }
             }
         }else{
@@ -26,6 +27,7 @@ public class Juego extends Tablero {
             for (int i = 0; i < sopaLetrasNormal.length; i++) {
                 if (letra.equals(sopaLetrasNormal[i])) {
                     System.out.println("\n \n\nHas encontrado la letra "+letra+"\n\n\n");
+                    this.letra="";
                 }
             }
         }
