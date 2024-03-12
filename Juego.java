@@ -17,7 +17,7 @@ public class Juego extends Tablero {
     public void compruebaLetra(){
         boolean encontrada=false;
         if (dificil) {
-            PalabrasEncontradas= new String[18];
+            
 
             for (int i = 0; i < sopaLetrasDificil.length; i++) {
                 if (letra.equals(sopaLetrasDificil[i])) {
@@ -35,7 +35,7 @@ public class Juego extends Tablero {
                 }
             }
         }else{
-            PalabrasEncontradas = new String[6];
+            
             for (int i = 0; i < sopaLetrasNormal.length; i++) {
 
                 for(int j =0;j<PalabrasEncontradas.length;j++){
@@ -210,12 +210,13 @@ public class Juego extends Tablero {
             case 0:
             dificil=false;
                 asignaValores(0);
-
+PalabrasEncontradas = new String[6];
                 break;
 
             case 1:
             dificil=true;
                 asignaValores(1);
+                PalabrasEncontradas= new String[18];
                 break;
             default:
                 break;
