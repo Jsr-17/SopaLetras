@@ -31,7 +31,7 @@ public class Juego extends Tablero {
         
         if (dificil) {            
             for (int i = 0; i < sopaLetrasDificil.length; i++) {
-                if (letra==sopaLetrasDificil[i]) {
+                if (letra.equals(sopaLetrasDificil[i])) {
                     System.out.println("\n\n\nHas encontrado la letra "+letra+"\n\n\n");
                 }
             }
