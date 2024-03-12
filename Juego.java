@@ -14,21 +14,7 @@ public class Juego extends Tablero {
     String sopaLetrasDificil[]={"ROJO","POLLO","ROMERO","ALOE","ARMA","CHATEAR","PATRON","SAL","OSO","DADO","COMIDA","MES","CERDO","OJO","AMOR","TACHO","LAS","OTRO"};
 
     
-    public void pedirLetra(){            
-        
-        System.out.println("Para escoger la palabra que has reconocido elige las posiciones x e y respectivamente de cada letra saldrá la palabra que se va formando segun vas escribiendolo por ejemplo 1,2\nEn el caso de querer borrar la palabra escribe Borrar");
-        String texto=scanner.nextLine();
-        if (texto.equalsIgnoreCase("borrar")||texto.equalsIgnoreCase("borar")||texto.equalsIgnoreCase("borra")||texto.equalsIgnoreCase("vorrar")||texto.equalsIgnoreCase("vora")) {
-            this.letra="";
-            return;
-        }
-        
-       int n1= Character.getNumericValue(texto.charAt(0));
-       int n2=Character.getNumericValue(texto.charAt(2));
-
-        letra+=this.tableroJuego[n1][n2];
-        System.out.println("La palabra que estas formando es:  "+this.letra);
-        
+    public void compruebaLetra(){
         if (dificil) {            
             for (int i = 0; i < sopaLetrasDificil.length; i++) {
                 if (letra.equals(sopaLetrasDificil[i])) {
@@ -43,6 +29,25 @@ public class Juego extends Tablero {
                 }
             }
         }
+    }
+
+
+    public void pedirLetra(){            
+        
+        System.out.println("Para escoger la palabra que has reconocido elige las posiciones x e y respectivamente de cada letra saldrá la palabra que se va formando segun vas escribiendolo por ejemplo 1,2\nEn el caso de querer borrar la palabra escribe Borrar");
+        String texto=scanner.nextLine();
+        if (texto.equalsIgnoreCase("borrar")||texto.equalsIgnoreCase("borar")||texto.equalsIgnoreCase("borra")||texto.equalsIgnoreCase("vorrar")||texto.equalsIgnoreCase("vora")) {
+            this.letra="";
+            return;
+        }
+        
+       int n1= Character.getNumericValue(texto.charAt(0));
+       int n2=Character.getNumericValue(texto.charAt(2));
+
+        letra+=this.tableroJuego[n1][n2];
+        System.out.println("La palabra que estas formando es: "+this.letra);
+        
+        compruebaLetra();
 
     }
 
